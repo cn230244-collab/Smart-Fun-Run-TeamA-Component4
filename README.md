@@ -15,7 +15,7 @@ Smart Hydration &amp; Aid Stations: Resource tracking (water levels, automated m
 | HAZIQ HAKIMI BIN HUSHAIMI | CN230244 | OS Developer |
 
 
-## Project Overview
+## Component Overview
 _To be completed by the development team._
 
 ## Quick Start Guide
