@@ -23,10 +23,9 @@ _To be completed by the development team._
 _To be updated after backend and IoT integration._
 
 ## Folder Structure
-```text
-docs/       -> Technical documentation and schematics
-src_iot/    -> Source code for IoT devices
-src_os/     -> Backend operating system source code
-media/      -> Media links and prototype demonstrations
-```
+
+- [docs](./docs) - Documentation and architecture files
+- [src_iot](./src_iot) - IoT source code and sensor communication
+- [src_os](./src_os) - Backend operating system source code
+- [media](./media) - Media links and demonstration videos
 
