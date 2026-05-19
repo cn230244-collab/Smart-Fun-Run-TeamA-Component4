@@ -13,3 +13,20 @@ Smart Hydration &amp; Aid Stations: Resource tracking (water levels, automated m
 | AMIRAH EZZATI | CN240451 | OS Developer |
 | AHMAD SHAHEER KHUSAIRI BIN MOHD AMBRIM | CN230434 | OS Developer |
 | HAZIQ HAKIMI BIN HUSHAIMI | CN230244 | OS Developer |
+
+
+## Project Overview
+_To be completed by the development team._
+
+## Quick Start Guide
+
+_To be updated after backend and IoT integration._
+
+## Folder Structure
+```text
+docs/       -> Technical documentation and schematics
+src_iot/    -> Source code for IoT devices
+src_os/     -> Backend operating system source code
+media/      -> Media links and prototype demonstrations
+```
+
