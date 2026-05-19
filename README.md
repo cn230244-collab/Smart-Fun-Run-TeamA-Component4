@@ -1,7 +1,7 @@
 # Smart-Fun-Run-TeamA-Component4
 Smart Hydration &amp; Aid Stations: Resource tracking (water levels, automated misters) managed via strict OS semaphores/mutexes to prevent running out of resources.
-## Team Members
 
+## Team Members
 | Name | Matric Number | Role |
 |------|------|------|
 | MUHAMMAD AIDIL BIN SUHAIMI | CN230086 | IoT Developer |
