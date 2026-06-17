@@ -34,7 +34,7 @@ The OS backend handles the persistence of live data through a dedicated module t
 ---
 
 ### 4. System Monitoring and Fault Tolerance
-To meet the "Excellent" grade criteria, we integrated several monitoring and stability features into our core server logic:
+We integrated several monitoring and stability features into our core server logic:
 
 *   **Identity Tracking:** In **`server.py`**, we log the **IP Address** of every incoming request to confirm the data originates from authorized IoT sensor hardware.
 *   **Robustness:** We wrapped the file operations in `try...except` blocks. If the file system experiences a temporary error (e.g., if the file is opened by another program), the server catches the error and stays online rather than crashing. This ensures the system-wide stability required for a live "Fun Run" environment.
