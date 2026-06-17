@@ -7,47 +7,34 @@ Our group was tasked with managing the resource tracking (water bottle stock) fo
 
 ---
 
-## 1. Concurrency and Multithreading
-Our backend system is designed to handle high-frequency data from multiple aid stations simultaneously by utilizing a **multithreaded architecture**.
+### 1. Handling Concurrency (Multithreading in `server.py`)
+For the Smart Fun Run, we expect multiple hydration stations to send stock updates simultaneously. To prevent the server from becoming a bottleneck, we utilized a multithreaded architecture.
 
-*   **Mechanism:** Each incoming request from an IoT sensor to the `/api/funrun` endpoint is processed within a **separate execution thread**.
-
-*   **Implementation:** We track the **Thread ID** and **Process ID (PID)** for every transaction to monitor how the OS manages concurrent tasks.
-
-*   **Significance:** This ensures that the system remains responsive. If multiple runners or stations trigger data updates at once, the OS schedules these threads efficiently to prevent server bottlenecks. 
+*   **Implementation:** Each incoming request from the IoT hardware to the `/api/funrun` endpoint is processed by the OS backend in **`server.py`** within its own dedicated thread.
+*   **Tracking:** Our code explicitly captures and logs the **Thread ID** and **Process ID (PID)** for every transaction. This allows our team of 6 OS developers to verify that the operating system is multitasking correctly during the event.
+*   **Purpose:** This ensures that if one station experiences network lag, it does not block the water level updates from other aid stations, maintaining high system responsiveness.
 
 ---
 
-## 2. Resource Locks and Synchronization (Strict Mutex)
-As specifically required for **Component 4**, we have implemented **strict OS mutexes** to manage the shared resource of the hydration stock log. 
+### 2. Synchronization & The Mutex Lock (Implemented in `server.py`)
+Since all threads attempt to write to a single shared resource—the `hydration_log.xlsx` file—we had to address the risk of **Race Conditions**. Without synchronization, simultaneous writes would lead to file corruption or server crashes.
 
-*   **The Challenge (Race Conditions):** Without protection, two threads writing to the `hydration_log.xlsx` file at the same time would cause file corruption or data loss.
-
-*   **The Solution:** We implemented a **Mutual Exclusion (Mutex) Lock** using `threading.Lock()`.
-
-*   **Strict Synchronization:** By utilizing the `with db_lock:` statement, we define a **Critical Section**. 
-    *   Only **one thread** is granted access to the file at a time.
-    *   All other threads must wait in a queue until the lock is released.
-    *   This guarantees absolute **data integrity** for the water bottle totals.
+*   **The Lock:** As required for Component 4, we implemented a **Strict Mutex Lock** (`db_lock`) using `threading.Lock()` inside **`server.py`**.
+*   **The Critical Section:** We used a `with db_lock:` block to wrap the file-writing logic. This acts as a gatekeeper: only one thread is granted the "lock" to access and write to the Excel file at any given moment.
+*   **Result:** By enforcing this strict synchronization, we guarantee absolute data integrity for bottle counts, ensuring the "Smart Hydration" system never loses track of resources.
 
 ---
 
-## 3. File Management System
-The OS backend provides a robust file management layer to ensure all hydration data is stored and formatted correctly. 
+### 3. File Management System (`database_handler.py`)
+The OS backend handles the persistence of live data through a dedicated module to ensure it is stored and formatted correctly for event organizers.
 
-*   **Automated Initialization:** The system uses `os.path.exists` to check for the log file at startup. If it is missing, the OS automatically creates a new `.xlsx` file with the correct headers.
-
-*   **Persistence and Formatting:** We use the `openpyxl` library to append data persistently. 
-
-*   **Dynamic Auto-Fit:** To improve usability, our code includes an algorithm that calculates the maximum length of data in each column and **automatically adjusts the column width**, ensuring the logs are always readable.
+*   **Automation:** In **`database_handler.py`**, we used the `os.path` library to verify the existence of the log file at startup. If the file is missing, the script automatically generates a new `.xlsx` file with established headers for tracking.
+*   **Auto-Formatting:** To improve data readability, we implemented an "Auto-Fit" algorithm within the handler. This logic calculates the character length in each cell and adjusts the Excel column widths dynamically, demonstrating an automated approach to file presentation and management.
 
 ---
 
-## 4. System-Wide Monitoring and Robustness
-To meet the "Excellent" grade criteria, we integrated system-level monitoring features. 
+### 4. System Monitoring and Fault Tolerance
+To meet the "Excellent" grade criteria, we integrated several monitoring and stability features into our core server logic:
 
-*   **Process Identification:** Logging the **PID** allows administrators to track the server as a stable background process (daemon) within the OS environment.
-
-*   **Network Security:** We capture the **IP Address** of every incoming request to verify that the data originates from authorized aid station hardware.
-
-*   **Fault Tolerance:** Our implementation of `try...except` blocks ensures that file-level errors (like a locked file) do not crash the entire server, maintaining **system-wide stability**.
+*   **Identity Tracking:** In **`server.py`**, we log the **IP Address** of every incoming request to confirm the data originates from authorized IoT sensor hardware.
+*   **Robustness:** We wrapped the file operations in `try...except` blocks. If the file system experiences a temporary error (e.g., if the file is opened by another program), the server catches the error and stays online rather than crashing. This ensures the system-wide stability required for a live "Fun Run" environment.
