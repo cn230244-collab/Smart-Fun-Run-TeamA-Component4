@@ -1,10 +1,13 @@
-# 🚀 OS Mechanisms & Technical Specifications
+# OS Mechanisms & Technical Specifications
 ### **Component 4: Smart Hydration & Aid Stations**
 **Team:** `Smart-Fun-Run-TeamA-Component4`
 
+## Introduction
+Our group was tasked with managing the resource tracking (water bottle stock) for the Smart Fun Run. To ensure the system remains stable and the data stays accurate when multiple aid stations send updates at once, we implemented several core Operating System concepts within our backend.
+
 ---
 
-## 🧵 1. Concurrency and Multithreading
+## 1. Concurrency and Multithreading
 Our backend system is designed to handle high-frequency data from multiple aid stations simultaneously by utilizing a **multithreaded architecture**.
 
 *   **Mechanism:** Each incoming request from an IoT sensor to the `/api/funrun` endpoint is processed within a **separate execution thread**.
@@ -15,7 +18,7 @@ Our backend system is designed to handle high-frequency data from multiple aid s
 
 ---
 
-## 🔒 2. Resource Locks and Synchronization (Strict Mutex)
+## 2. Resource Locks and Synchronization (Strict Mutex)
 As specifically required for **Component 4**, we have implemented **strict OS mutexes** to manage the shared resource of the hydration stock log [4, 5].
 
 *   **The Challenge (Race Conditions):** Without protection, two threads writing to the `hydration_log.xlsx` file at the same time would cause file corruption or data loss.
@@ -29,7 +32,7 @@ As specifically required for **Component 4**, we have implemented **strict OS mu
 
 ---
 
-## 📂 3. File Management System
+## 3. File Management System
 The OS backend provides a robust file management layer to ensure all hydration data is stored and formatted correctly [4].
 
 *   **Automated Initialization:** The system uses `os.path.exists` to check for the log file at startup. If it is missing, the OS automatically creates a new `.xlsx` file with the correct headers.
@@ -40,7 +43,7 @@ The OS backend provides a robust file management layer to ensure all hydration d
 
 ---
 
-## 🛡️ 4. System-Wide Monitoring and Robustness
+## 4. System-Wide Monitoring and Robustness
 To meet the "Excellent" grade criteria, we integrated system-level monitoring features [6]:
 
 *   **Process Identification:** Logging the **PID** allows administrators to track the server as a stable background process (daemon) within the OS environment.
