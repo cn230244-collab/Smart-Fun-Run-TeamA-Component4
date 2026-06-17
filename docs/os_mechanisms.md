@@ -17,7 +17,7 @@ For the Smart Fun Run, we expect multiple hydration stations to send stock updat
 ---
 
 ### 2. Synchronization & The Mutex Lock (Implemented in `server.py`)
-Since all threads attempt to write to a single shared resource—the `hydration_log.xlsx` file—we had to address the risk of **Race Conditions**. Without synchronization, simultaneous writes would lead to file corruption or server crashes.
+Since all threads attempt to write to a single shared resource, the `hydration_log.xlsx` file we had to address the risk of **Race Conditions**. Without synchronization, simultaneous writes would lead to file corruption or server crashes.
 
 *   **The Lock:** As required for Component 4, we implemented a **Strict Mutex Lock** (`db_lock`) using `threading.Lock()` inside **`server.py`**.
 *   **The Critical Section:** We used a `with db_lock:` block to wrap the file-writing logic. This acts as a gatekeeper: only one thread is granted the "lock" to access and write to the Excel file at any given moment.
