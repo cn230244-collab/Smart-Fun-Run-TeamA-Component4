@@ -14,12 +14,12 @@ Our backend system is designed to handle high-frequency data from multiple aid s
 
 *   **Implementation:** We track the **Thread ID** and **Process ID (PID)** for every transaction to monitor how the OS manages concurrent tasks.
 
-*   **Significance:** This ensures that the system remains responsive. If multiple runners or stations trigger data updates at once, the OS schedules these threads efficiently to prevent server bottlenecks [4].
+*   **Significance:** This ensures that the system remains responsive. If multiple runners or stations trigger data updates at once, the OS schedules these threads efficiently to prevent server bottlenecks. 
 
 ---
 
 ## 2. Resource Locks and Synchronization (Strict Mutex)
-As specifically required for **Component 4**, we have implemented **strict OS mutexes** to manage the shared resource of the hydration stock log [4, 5].
+As specifically required for **Component 4**, we have implemented **strict OS mutexes** to manage the shared resource of the hydration stock log. 
 
 *   **The Challenge (Race Conditions):** Without protection, two threads writing to the `hydration_log.xlsx` file at the same time would cause file corruption or data loss.
 
@@ -33,7 +33,7 @@ As specifically required for **Component 4**, we have implemented **strict OS mu
 ---
 
 ## 3. File Management System
-The OS backend provides a robust file management layer to ensure all hydration data is stored and formatted correctly [4].
+The OS backend provides a robust file management layer to ensure all hydration data is stored and formatted correctly. 
 
 *   **Automated Initialization:** The system uses `os.path.exists` to check for the log file at startup. If it is missing, the OS automatically creates a new `.xlsx` file with the correct headers.
 
@@ -44,7 +44,7 @@ The OS backend provides a robust file management layer to ensure all hydration d
 ---
 
 ## 4. System-Wide Monitoring and Robustness
-To meet the "Excellent" grade criteria, we integrated system-level monitoring features [6]:
+To meet the "Excellent" grade criteria, we integrated system-level monitoring features. 
 
 *   **Process Identification:** Logging the **PID** allows administrators to track the server as a stable background process (daemon) within the OS environment.
 
