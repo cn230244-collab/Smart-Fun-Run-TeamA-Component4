@@ -52,10 +52,10 @@
 
 ## 📂 Folder Structure
 
-*   **`docs/`** - System architecture diagrams, hardware setup guides, and detailed OS mechanism reports.
-*   **`src_iot/`** - C++ source code for microcontrollers and standardized JSON payload definitions.
-*   **`src_os/`** - Multithreaded server logic and automated Excel database handler scripts.
-*   **`media/`** - High-quality photos and video demonstrations of the integrated prototype.
+[**`docs/`**](docs/) - System architecture diagrams, hardware setup guides, and detailed OS mechanism reports.
+*   [**`src_iot/`**](src_iot/) - C++ source code for microcontrollers and standardized JSON payload definitions.
+*   [**`src_os/`**](src_os/) - Multithreaded server logic and automated Excel database handler scripts.
+*   [**`media/`**](media/) - High-quality photos and video demonstrations of the integrated prototype.
 
 ---
 
