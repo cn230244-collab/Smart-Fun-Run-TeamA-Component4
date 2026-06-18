@@ -1,5 +1,5 @@
 # Smart-Fun-Run-TeamA-Component4
-Smart Hydration &amp; Aid Stations: Resource tracking (water levels, automated misters) managed via strict OS semaphores/mutexes to prevent running out of resources.
+This project designed to optimize event resource management through real-time inventory tracking. IoT sensors programmed in C++ embedded in the hardware, monitor water bottle stock levels and instantly transmit status updates to a robust Python-based OS backend excel file. To maintain 100% data integrity during the "Smart Fun Run," the server utilizes multithreading to process concurrent updates from multiple stations and strict mutex synchronization to prevent race conditions within the shared Excel database. This ensures organizers have access to automatically formatted, live-updating logs, enabling seamless aid station operations and efficient resource management throughout the entire event.
 
 ## Team Members
 | Name | Matric Number | Role |
