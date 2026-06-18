@@ -43,7 +43,7 @@
 1.  **Hardware Deployment:** Power on the IoT sensor node and ensure it is connected to the event local network.
 2.  **Server Activation:** Navigate to the `src_os` directory and execute:
     ```bash
-    python server.py
+    python serverdata.py
     ```
 3.  **Live Monitoring:** Open the `media/hydration_log.xlsx` file. The backend will automatically create and format the log upon receiving the first data packet.
 4.  **System Verification:** Observe the server terminal to track incoming **Thread IDs** and **Process IDs** to confirm concurrent operation.
