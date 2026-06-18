@@ -31,7 +31,7 @@
 
 ## 🛠️ Technology Stack
 
-*   **IoT (Edge):** C++, Arduino/ESP32, JSON-standardized payloads.
+*   **IoT (Edge):** C++, Arduino, JSON-standardized payloads.
 *   **OS (Backend):** Python 3.x, Flask (API Framework).
 *   **Data Engine:** Openpyxl for Excel management and persistent logging.
 *   **OS Mechanisms:** Multithreading, Process ID (PID) tracking, and Mutex/Resource Locking.
