@@ -10,8 +10,8 @@
 #include <Adafruit_SSD1306.h>
 
 // WiFi
-char ssid[] = "aidil";
-char pass[] = "asd123asd";
+char ssid[] = "WIFINAME";
+char pass[] = "PASSWORD";
 
 // OLED
 #define SCREEN_WIDTH 128
