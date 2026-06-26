@@ -1,1 +1,5 @@
-
+{
+  "bottleCount": 35,
+  "remainingBottle": 25,
+  "lowStock": false
+}
