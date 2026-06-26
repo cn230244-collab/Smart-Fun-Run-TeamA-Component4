@@ -1,0 +1,33 @@
+# ==========================================
+# 🎯 FAIL LOG UTAMA (PROJEK HYDRATION)
+# ==========================================
+# Mengabaikan fail log terkini supaya tak masuk GitHub
+hydration_log.csv
+
+# Abaikan juga kalau korang terbuat format Excel lama/baru secara tak sengaja
+*.xlsx
+*.xls
+
+# ==========================================
+# 🐍 FAIL SAMPAH / CACHE PYTHON
+# ==========================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv
+venv/
+ENV/
+
+# ==========================================
+# 🤖 FAIL SULIT / CONFIG IOT & IDE
+# ==========================================
+# Mengabaikan fail simpanan token Blynk/WiFi jika ada fail .env atau .local
+.env
+.env.local
+
+# Fail sampah dari software Arduino / VS Code
+.vscode/
+.DS_Store
+Thumbs.db
